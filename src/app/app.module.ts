@@ -21,7 +21,7 @@
  */
 
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, Inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
@@ -35,6 +35,8 @@ import {PartsModule} from './parts/parts.module';
 import {SpecialtiesModule} from './specialties/specialties.module';
 import {HttpErrorHandler} from './error.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {Router} from '@angular/router';
+import { ApmService } from '@elastic/apm-rum-angular';
 
 
 @NgModule({
@@ -57,8 +59,20 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   ],
   providers: [
     HttpErrorHandler,
+    {
+      provide: ApmService,
+      useClass: ApmService,
+      deps: [Router]
+    }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(@Inject(ApmService) service: ApmService) {
+    // API is exposed through this apm instance
+    const apm = service.init({
+      serviceName: 'angular-app',
+      serverUrl: 'http://localhost:8200'
+    })
+  }
 }
