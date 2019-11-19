@@ -72,8 +72,8 @@ export class AppModule {
     // API is exposed through this apm instance
     const apm = service.init({
       serviceName: 'angular-app',
-      serverUrl: 'http://apm:8200',
-      distributedTracingOrigins: ['http://apprest:9966']
+      serverUrl: 'http://localhost:8200',
+      distributedTracingOrigins: ['http://localhost:9966']
     })
   }
 }
