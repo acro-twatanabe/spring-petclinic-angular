@@ -73,7 +73,7 @@ export class AppModule {
     // const apm = service.init({
     //   serviceName: 'angular-app',
     //   serverUrl: 'http://localhost:8200',
-    //   distributedTracingOrigins: ['http://localhost:9966']
+    //   distributedTracingOrigins: ['http://apprest:9966']
     // })
   }
 }
