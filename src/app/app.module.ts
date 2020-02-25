@@ -70,10 +70,10 @@ import { ApmService } from '@elastic/apm-rum-angular';
 export class AppModule {
   constructor(@Inject(ApmService) service: ApmService) {
     // API is exposed through this apm instance
-    const apm = service.init({
-      serviceName: 'angular-app',
-      serverUrl: 'http://localhost:8200',
-      distributedTracingOrigins: ['http://localhost:9966']
-    })
+    // const apm = service.init({
+    //   serviceName: 'angular-app',
+    //   serverUrl: 'http://localhost:8200',
+    //   distributedTracingOrigins: ['http://localhost:9966']
+    // })
   }
 }
