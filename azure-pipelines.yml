@@ -11,7 +11,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '15d76bb6-d9c3-4844-a0ef-d23d4acf840b'
-  imageRepository: 'appangular'
+  imageRepository: 'app-angular'
   containerRegistry: 'petclinic.azurecr.io'
   dockerfilePath: '**/Dockerfile_nginx'
   tag: '$(Build.BuildId)'
