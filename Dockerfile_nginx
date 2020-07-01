@@ -20,6 +20,5 @@ RUN cd /opt \
 
 RUN cd /opt && ng build --prod --base-href=/petclinic/ --deploy-url=/petclinic/
 
-RUN   cp -r /opt/dist /usr/share/nginx/html/petclinic/dist　\
-    && cp /opt/nginx/conf/nginx.conf /etc/nginx/
-
+RUN cp -r /opt/dist /usr/share/nginx/html/petclinic/dist
+RUN cp /opt/nginx/conf/nginx.conf /etc/nginx/nginx.conf
