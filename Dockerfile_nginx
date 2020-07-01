@@ -1,3 +1,25 @@
 FROM nginx:1.16
-COPY ./spring-petclinic-angular/dist /usr/share/nginx/html/petclinic/dist
-COPY ./app-server/nginx/conf/nginx.conf /etc/nginx/nginx.conf
+
+RUN apt-get update -y
+RUN apt-get install -y nodejs npm sudo curl
+RUN sudo curl -sL https://deb.nodesource.com/setup | sudo bash -
+
+# 社内用プロキシ設定
+# RUN npm -g config set proxy http://192.168.65.66:8080 \
+#     && npm -g config set https-proxy http://192.168.65.66:8080 \
+#     && npm -g config set registry http://registry.npmjs.org/ 
+
+RUN sudo npm install npm@latest -g
+
+COPY ./ /opt 
+
+RUN cd /opt \
+    && npm cache clean --force \
+    && npm i -g  @angular/cli \
+    && npm link
+
+RUN cd /opt && ng build --prod --base-href=/petclinic/ --deploy-url=/petclinic/
+
+RUN   cp -r /opt/dist /usr/share/nginx/html/petclinic/dist　\
+    && cp /opt/nginx/conf/nginx.conf /etc/nginx/
+
