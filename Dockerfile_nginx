@@ -2,7 +2,7 @@ FROM nginx:1.16
 
 RUN apt-get update -y
 RUN apt-get install -y nodejs npm sudo curl
-RUN sudo curl -sL https://deb.nodesource.com/setup | sudo bash -
+RUN sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
 
 # 社内用プロキシ設定
 # RUN npm -g config set proxy http://192.168.65.66:8080 \
